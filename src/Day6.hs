@@ -2,6 +2,7 @@ module Day6 where
 
 import Data.Vector as V
 import qualified Data.Set as S
+import qualified Data.Map as M
 
 type Banks = Vector Integer
 
@@ -27,3 +28,10 @@ solve banks = solveRec 0 banks S.empty
             acc
           else
             solveRec (acc + 1) (redistribute b) (S.insert b s)
+
+solve2 :: Banks -> Integer
+solve2 banks = solveRec 0 banks M.empty
+  where solveRec acc b m =
+          case M.lookup b m of
+            Nothing -> solveRec (acc + 1) (redistribute b) (M.insert b acc m)
+            Just pc -> acc - pc
