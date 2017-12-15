@@ -24,3 +24,17 @@ solve :: Prog -> Integer
 solve = solveRec 0 . return
   where solveRec acc Nothing = acc
         solveRec acc (Just p) = solveRec (acc + 1) $ makeMove p
+
+makeMove2 :: Prog -> Maybe Prog
+makeMove2 (_, []) = Nothing
+makeMove2 (fnt, x : bck) =
+  let newX = if x < 3 then x + 1 else x - 1
+      newProg = (fnt, newX : bck)
+  in if x >= 0
+     then fwd x newProg
+     else rev (abs x) newProg
+
+solve2 :: Prog -> Integer
+solve2 = solveRec 0 . return
+  where solveRec acc Nothing = acc
+        solveRec acc (Just p) = solveRec (acc + 1) $ makeMove2 p
