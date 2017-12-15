@@ -23,3 +23,9 @@ tests =
     , "for 1234," ~: 0 ~=? (solve [1, 2, 3, 4])
     , "for 91212129," ~: 9 ~=? (solve [9, 1, 2, 1, 2, 1, 2, 9])
     ]
+
+solve2 :: Captcha -> Integer
+solve2 xs =
+  let (fnt, bck) = splitAt (length xs `quot` 2) xs
+      xs' = zip xs (bck ++ fnt)
+  in sum $ map fst $ filter (\(x, y) -> x == y) xs'
