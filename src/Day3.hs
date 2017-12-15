@@ -25,3 +25,5 @@ manhattan (x1, y1) (x2, y2) = abs (x1 - x2) + abs (y1 - y2)
 
 solve :: Integer -> Integer
 solve n = manhattan (0, 0) $ coords n
+
+-- Part 2: https://oeis.org/A141481
