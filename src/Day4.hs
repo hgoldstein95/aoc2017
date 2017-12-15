@@ -10,3 +10,12 @@ hasDups = hdRec . sort
 solve :: [[String]] -> Integer
 solve = sum . (map isValid)
   where isValid ls = if hasDups ls then 0 else 1
+
+hasAnas :: [String] -> Bool
+hasAnas xs =
+  let pairs = [(x, y) | (x : ys) <- tails xs, y <- ys]
+  in any (\(a, b) -> sort a == sort b) pairs
+
+solve2 :: [[String]] -> Integer
+solve2 = sum . (map isValid)
+  where isValid ls = if hasAnas ls then 0 else 1
