@@ -1,6 +1,7 @@
 module Day2 where
 
-import Test.HUnit
+import Data.List
+import Data.Maybe
 
 type Row = [Integer]
 type Sheet = [Row]
@@ -14,6 +15,21 @@ solveRow lst = maximum lst - minimum lst
 solve :: Sheet -> Integer
 solve = foldl (\acc x -> acc + solveRow x) 0
 
-tests :: Test
-tests =
-  test ["main case," ~: 18 ~=? solve [[5, 1, 9, 5], [7, 5, 3], [2, 4, 6, 8]]]
+--- Part 2
+
+checkDivides :: (Integer, Integer) -> Maybe Integer
+checkDivides (x, y) =
+  let mx = maximum [x, y]
+      mn = minimum [x, y]
+  in if mx `mod` mn == 0 then
+       Just $ mx `quot` mn
+     else
+       Nothing
+
+solveRow2 :: Row -> Integer
+solveRow2 xs =
+  let pairs = [(x, y) | (x : ys) <- tails xs, y <- ys]
+  in mapMaybe checkDivides pairs !! 0
+
+solve2 :: Sheet -> Integer
+solve2 = foldl (\acc x -> acc + solveRow2 x) 0
