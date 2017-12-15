@@ -24,6 +24,7 @@ dependencies:
 - HUnit
 - vector
 - containers
+- parsec
 
 library:
   source-dirs: src
