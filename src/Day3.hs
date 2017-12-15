@@ -4,11 +4,10 @@ type Coord = (Integer, Integer)
 data Move = Up | Dn | Lt | Rt deriving (Show)
 
 moves :: [Move]
-moves = concat
-  $ map (\(n, d) -> replicate n d)
-  $ zip nums
-  $ concat $ repeat [Rt, Up, Lt, Dn]
-  where nums = concatMap (replicate 2) [1..]
+moves =
+  let nums = concatMap (replicate 2) [1..]
+      dirCycle = (concat $ repeat [Rt, Up, Lt, Dn])
+  in concatMap (\(n, d) -> replicate n d) $ zip nums dirCycle
 
 coords :: Integer -> Coord
 coords n = cRec (take (fromIntegral (n - 1)) moves)
