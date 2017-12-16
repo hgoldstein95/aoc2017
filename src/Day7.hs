@@ -41,5 +41,3 @@ solve xs =
 
         getName (NoDisc s _) = s
         getName (Disc s _ _) = s
-
---- Part 2
