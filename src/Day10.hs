@@ -54,6 +54,9 @@ knotHash xs =
   let sparse = infoData $
         foldl (\acc _ -> hashRound acc xs) (Info [0..255] 0 0) [(0 :: Int)..63]
   in intercalate "" $
-     map (printf "%0x") $
+     map (printf "%02x") $
      map (foldl xor 0) $
      groupBy 16 sparse
+
+hash :: String -> String
+hash = knotHash . toLengthSeq

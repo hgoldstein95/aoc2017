@@ -26,6 +26,8 @@ dependencies:
 - containers
 - parsec
 - split
+- hex
+- array
 
 library:
   source-dirs: src
