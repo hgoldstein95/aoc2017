@@ -28,6 +28,7 @@ dependencies:
 - split
 - hex
 - array
+- kessel-run
 
 library:
   source-dirs: src
