@@ -29,6 +29,7 @@ dependencies:
 - hex
 - array
 - kessel-run
+- matrix
 
 library:
   source-dirs: src
